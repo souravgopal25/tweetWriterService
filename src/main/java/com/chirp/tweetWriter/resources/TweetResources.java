@@ -42,6 +42,26 @@ public class TweetResources {
         ResponseEntity response=new ResponseEntity(map,HttpStatus.valueOf(value));
         return response;
     }
+    @RequestMapping(value = "/v1/comment",method = RequestMethod.POST)
+    public ResponseEntity<?> uploadComment(@RequestBody Tweet tweet) throws Exception{
+        String tweetId=tweetIdGenerator.getTweetId(tweet);
+        tweet.setTweetId(tweetId);
+        boolean check=tweetService.save(tweet);
+        Map<String,Object> map=new HashMap<>();
+        int value=0;
+        if (check){
+            value=201;
+            map.put("status code",201);
+            map.put("message","uploaded succesfully");
+
+        }else {
+            value=403;
+            map.put("status code", 403);
+            map.put("message","uploaded succesfully");
+        }
+        ResponseEntity response=new ResponseEntity(map,HttpStatus.valueOf(value));
+        return response;
+    }
 
 
 

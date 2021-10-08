@@ -32,7 +32,24 @@ public class LikeResources {
         }
         map.put("status code",201);
         map.put("message","uploaded succesfully");
-        ResponseEntity response=new ResponseEntity(map, HttpStatus.valueOf(403));
+        ResponseEntity response=new ResponseEntity(map, HttpStatus.valueOf(201));
+        return response;
+    }
+    @RequestMapping(value = "/v1/dislike",method = RequestMethod.DELETE)
+    public ResponseEntity<?> dislike(@RequestBody Like like)throws Exception{
+        boolean check;
+        Map<String,Object> map=new HashMap<>();
+        try {
+            likeService.delete(like);
+        }catch (Exception e){
+            map.put("status code", 403);
+            map.put("message","Not succesfully");
+            ResponseEntity response=new ResponseEntity(map, HttpStatus.valueOf(403));
+            return response;
+        }
+        map.put("status code",201);
+        map.put("message","Deleted succesfully");
+        ResponseEntity response=new ResponseEntity(map, HttpStatus.valueOf(201));
         return response;
     }
 }

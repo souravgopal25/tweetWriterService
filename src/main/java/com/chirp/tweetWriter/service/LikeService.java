@@ -18,4 +18,12 @@ public class LikeService {
         }
         return true;
     }
+    public boolean delete(Like like) {
+        try {
+            likeRepository.delete(like);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

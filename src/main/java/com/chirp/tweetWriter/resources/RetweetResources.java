@@ -28,13 +28,13 @@ public class RetweetResources {
             retweetService.save(retweet);
         }catch (Exception e){
             map.put("status code", 403);
-            map.put("message","uploaded succesfully");
+            map.put("message","error");
             ResponseEntity response=new ResponseEntity(map, HttpStatus.valueOf(403));
             return response;
         }
         map.put("status code",201);
         map.put("message","uploaded succesfully");
-        ResponseEntity response=new ResponseEntity(map, HttpStatus.valueOf(403));
+        ResponseEntity response=new ResponseEntity(map, HttpStatus.valueOf(201));
         return response;
     }
 }
