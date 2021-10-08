@@ -1,0 +1,19 @@
+package com.chirp.tweetWriter.service;
+
+import com.chirp.tweetWriter.model.Like;
+import com.chirp.tweetWriter.repository.LikeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class LikeService {
+    @Autowired
+    LikeRepository likeRepository;
+
+    public boolean save(Like like) {
+        try {
+            likeRepository.save(like);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+}
